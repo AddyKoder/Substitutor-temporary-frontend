@@ -1,6 +1,6 @@
 import {Route, Routes, BrowserRouter } from 'react-router-dom';
 // Importing Navbar
-import Navbar from './components/Navbar/Navbar';
+import Navbar from './components/Navbar';
 // Importing all pages
 import AllTeachers from './pages/AllTeachers';
 import Attendence from './pages/Attendence';
@@ -11,6 +11,7 @@ import Teacher from './pages/Teacher';
 // importing all styles
 import './styles/navbar.css'
 import './styles/default.css'
+import './styles/spinner.css'
 
 export default function App() {
 	return (
