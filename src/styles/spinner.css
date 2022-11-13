@@ -10,6 +10,8 @@
 	margin: 1em;
 	animation: fade-in 0.5s;
 	background-color: var(--color-bg);
+	margin-inline:auto;
+	margin-block: 5em;
 }
 
 .spinner:hover{
