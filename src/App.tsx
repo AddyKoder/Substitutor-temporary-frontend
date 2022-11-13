@@ -1,12 +1,15 @@
 // importing the browser router
-import './Router'
-// importing all styles
-import './styles/navbar.css'
-import './styles/default.css'
-import './styles/spinner.css'
-import './styles/notification.css'
-import './styles/typography.css'
 import Router from './Router'
+// importing all styles
+import './styles/components/navbar.css'
+import './styles/components/spinner.css'
+import './styles/components/notification.css'
+
+import './styles/default.css'
+import './styles/typography.css'
+
+import './styles/pages/AllTeachers.css'
+
 
 export default function App() {
 	return (

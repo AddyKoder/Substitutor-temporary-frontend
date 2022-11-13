@@ -30,9 +30,14 @@ export default function AllTeachers() {
 	}, []);
 
 	return (
-		<>
-			<h1>Teachers</h1>
-			<div className='all-teachers'>
+		<div className='all-teachers'>
+			<header>
+				<h1>Teachers List</h1>
+				<div className="search">
+					<input type="text" />
+				</div>
+			</header>
+
 				{/* if fetching is pending */}
 				{teachers === 'pending' ? (
 					<Spinner />
@@ -43,11 +48,11 @@ export default function AllTeachers() {
 						heading='Cannot Fetch Data'
 						content='Seems like you are not in an environment with a valid database available, Try restarting the application or contact the developer - Aditya Tripathi'
 					/>
-				) : (
+				) : /* if fetching succeed*/(
 					// if fetching has succeed
 					<TeacherList teachers={teachers as unknown as object[]} />
 				)}
-			</div>
-		</>
+
+		</div>
 	);
 }
