@@ -1,0 +1,51 @@
+
+.teachers-list .teacher-item{
+	box-sizing: border-box;
+	width: 100%;
+	display:flex;
+	border-radius: 10em;
+	align-items: center;
+	justify-content: space-between;
+	padding: 0.7em 2em;
+	font-weight: 400;
+	font-size: 1.2rem;
+}
+
+.teacher-item.header{
+	background-color: var(--color-accent);
+	opacity: 0.9;
+	margin-bottom: 1em;
+	margin-top: 3em;
+}
+
+.teacher-item .name{
+	width:50%;
+}
+.teacher-item .category{
+	width: 25%;
+}
+.teacher-item .class{
+	width: 25%;
+}
+
+.teacher-item:nth-child(even){
+	background-color: rgba(255, 255, 255, 0.02);
+}
+
+.teacher-item:hover::before{
+	content:"";
+	position:absolute;	
+	width: 13px;
+	height: 13px;
+	background-color: var(--color-accent);
+	transform: translate(-15px, 0px);
+	box-shadow: 0 0 10px 3px var(--color-accent);
+	border-radius: 50%;
+}
+.teacher-item:hover{
+	cursor: pointer;
+}
+
+.teacher-item div{
+	padding-left: 1em;
+}

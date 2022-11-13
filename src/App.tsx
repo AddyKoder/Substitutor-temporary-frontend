@@ -4,6 +4,7 @@ import Router from './Router'
 import './styles/components/navbar.css'
 import './styles/components/spinner.css'
 import './styles/components/notification.css'
+import './styles/components/teacher-list.css'
 
 import './styles/default.css'
 import './styles/typography.css'
