@@ -1,5 +1,8 @@
+import { Link } from 'react-router-dom'
 
 export default function Reschedules() {
-	return <div>Reschedules</div>
-	
+	return (
+		<Link to='/attendence/take'>To Addendence</Link>
+	)	
+
 }

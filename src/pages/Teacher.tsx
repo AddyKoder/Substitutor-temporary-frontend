@@ -1,5 +1,8 @@
+import { useParams } from "react-router-dom"
 
 export default function Teacher() {
-	return <div>Teacher</div>
+	const {id} = useParams()
+	
+	return <div>Teacher : {id}</div>
 	
 }
