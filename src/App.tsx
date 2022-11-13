@@ -8,7 +8,7 @@ import './styles/components/notification.css'
 import './styles/default.css'
 import './styles/typography.css'
 
-import './styles/pages/AllTeachers.css'
+import './styles/pages/allTeachers.css'
 
 
 export default function App() {

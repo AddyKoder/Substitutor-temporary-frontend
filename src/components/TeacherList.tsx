@@ -1,6 +1,8 @@
+import { typeTeacher } from "../utils/types"
 
-
-export default function TeacherList({ teachers }:{teachers:object[]}) {
+export default function TeacherList({ teachers, filter}:{teachers:typeTeacher[], filter:string}) {
+	// filter the teachers array with the give string
+	
 	return (
 		<div className="teachers-list">
 			{

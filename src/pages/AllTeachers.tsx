@@ -1,6 +1,6 @@
 import Notification from '../components/Notification';
 import Spinner from '../components/Spinner';
-import { useEffect, useState } from 'react';
+import { useEffect, useState} from 'react';
 import TeacherList from '../components/TeacherList';
 import { typeTeacher } from '../utils/types';
 
@@ -9,6 +9,9 @@ export default function AllTeachers() {
 	// can hold fetch status values like pending, success
 	// , fail etc.
 	const [teachers, setTeachers] = useState<string | typeTeacher[]>('pending');
+	const [search, setSearch] = useState<string>('')
+	const [debouncedSearch, setDebouncedSearch] = useState<string>('')
+	
 
 	// fetching the teacher's database
 	useEffect(() => {
@@ -28,16 +31,28 @@ export default function AllTeachers() {
 				setTeachers('failed');
 			});
 	}, []);
+	
+	// updating the debounced Search
+	useEffect(() => {
+		const timeOut = setTimeout(() => {
+			setDebouncedSearch(search)	
+		}, 500);
 
-	return (
+		return () => {
+			clearTimeout(timeOut)
+		}
+	},[search])
+
+		return (
 		<div className='all-teachers'>
 			<header>
 				<h1>Teachers List</h1>
 				<div className="search">
-					<input type="text" />
+					<input type="text" placeholder='Search' onChange={e => setSearch(e.target.value)}/>
 				</div>
 			</header>
 
+				{/* rendering specific element on various states */}
 				{/* if fetching is pending */}
 				{teachers === 'pending' ? (
 					<Spinner />
@@ -49,8 +64,7 @@ export default function AllTeachers() {
 						content='Seems like you are not in an environment with a valid database available, Try restarting the application or contact the developer - Aditya Tripathi'
 					/>
 				) : /* if fetching succeed*/(
-					// if fetching has succeed
-					<TeacherList teachers={teachers as unknown as object[]} />
+							<TeacherList teachers={teachers as typeTeacher[]} filter={debouncedSearch} />
 				)}
 
 		</div>

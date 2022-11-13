@@ -3,9 +3,10 @@
 	--color-bg-light: rgb(27, 40, 59);
 	--color-accent: rgb(0, 153, 255);
 }
-
-body{
+*{
 	font-family:'IBM Plex Sans';
+}
+body{
 
 	background-color: var(--color-bg);
 }
