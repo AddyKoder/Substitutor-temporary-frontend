@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react';
 import { typeTeacher } from '../utils/types';
 import Spinner from '../components/Spinner';
 import Notification from '../components/Notification';
+import { useNavigate } from 'react-router-dom'
 
 interface fullTypeTeacher extends typeTeacher{
 	timeTable:object
@@ -12,24 +13,37 @@ export default function Teacher() {
 	const { id } = useParams();
 	const [teacher, setTeacher] = useState<string | fullTypeTeacher>('pending');
 	const timetable = Object(teacher).timeTable
+	const navigate = useNavigate()
 
+	function fetchData() {
+		fetch(`http://127.0.0.1:8000/teacher/${id}`)
+					// fetching successfully
+					.then(r => {
+						if (r.status === 200) {
+							return r.json();
+						}
+						throw new Error('invalid status code');
+					})
+					.then(r => {
+						setTeacher(r);
+					})
+					// if some error occured
+					.catch(() => {
+						setTeacher('failed');
+					});
+	}
+
+	function delTeacher() {
+		if(!confirm(`Are you sure you want to delete Teacher`)) return 
+		fetch(`http://127.0.0.1:8000/teacher/${id}`, {method:'delete'})
+		fetchData()
+		setTimeout(() => {
+			navigate('/teachers')
+		}, 100);
+	}
 	// fetching Teacher's data
 	useEffect(() => {
-		fetch(`http://127.0.0.1:8000/teacher/${id}`)
-			// fetching successfully
-			.then(r => {
-				if (r.status === 200) {
-					return r.json();
-				}
-				throw new Error('invalid status code');
-			})
-			.then(r => {
-				setTeacher(r);
-			})
-			// if some error occured
-			.catch(() => {
-				setTeacher('failed');
-			});
+		fetchData()	
 	}, []);
 
 	return (
@@ -49,7 +63,7 @@ export default function Teacher() {
 						{teacher.category}
 					</div>
 					<div className='teacher-actions'>
-						<button className='button btn-del' style={{ display: 'flex' }}>
+						<button className='button btn-del' style={{ display: 'flex' }} onClick={delTeacher}>
 							<img
 								src='/del.svg'
 								style={{ height: '25px', aspectRatio: '1/1', filter: 'invert(100%) sepia(1%) saturate(135%) hue-rotate(255deg) brightness(116%) contrast(100%)' }}
