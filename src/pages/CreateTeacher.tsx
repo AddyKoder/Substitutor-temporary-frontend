@@ -81,7 +81,7 @@ export default function CreateTeacher() {
 				{/* Class Teacher of Input */}
 				<span>
 					<label htmlFor='class-input'>Class Teacher of</label>
-					<select name='class' id='class-input' value={tClass} onChange={e => setTclass(e.target.value)}>
+					<select name='class' id='class-input' style={{textTransform:'uppercase'}} value={tClass} onChange={e => setTclass(e.target.value)}>
 						{allClasses.map(classN => {
 							return (
 								<option key={classN} value={classN} style={{ textTransform: 'uppercase' }}>

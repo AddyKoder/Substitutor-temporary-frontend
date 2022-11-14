@@ -71,7 +71,7 @@ export function ClassSelector({value, setTimetable, day, period }: {value:string
 	const color = value === 'free'? 'rgba(124, 124, 124, 0.6)' : 'var(--color-accent)'
 	const styles = {color:color, borderColor:color}
 	return (
-		<select name='class' value={value} onChange={updateTimetable} style={styles}>
+		<select name='class' value={value} onChange={updateTimetable} style={{ ...styles, textTransform:'uppercase', textAlign:'center'}}>
 			<option value="free">Free</option>
 			{allClasses.map(classN => {
 				return (
