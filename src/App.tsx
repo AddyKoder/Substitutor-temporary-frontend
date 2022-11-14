@@ -10,6 +10,8 @@ import './styles/default.css'
 import './styles/typography.css'
 
 import './styles/pages/allTeachers.css'
+import './styles/pages/teacher.css'
+import './styles/pages/createTeacher.css'
 
 
 export default function App() {

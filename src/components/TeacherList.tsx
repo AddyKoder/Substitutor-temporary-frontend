@@ -1,7 +1,20 @@
 import { typeTeacher } from '../utils/types';
+import { useNavigate } from 'react-router-dom';
 
 export default function TeacherList({ teachers, filter }: { teachers: typeTeacher[]; filter: string }) {
 	// filter the teachers array with the give string
+	const filteredTeachers = teachers.filter(e => {
+		const teacher = Object(e);
+		for (const item of Object.values(teacher)) {
+			if (String(item).toLowerCase().includes(filter.toLowerCase())) {
+				return 1;
+			}
+		}
+
+		return 0;
+	});
+
+	const navigate = useNavigate()
 
 	return (
 		<div className='teachers-list'>
@@ -13,16 +26,21 @@ export default function TeacherList({ teachers, filter }: { teachers: typeTeache
 			</div>
 			{/* The List begins here */}
 			<div className='teachers'>
-				{teachers.map((e: object) => {
-					const teacher = Object(e);
-					return (
-						<div className='teacher-item'>
-							<div className='name'>{teacher.name}</div>
-							<div className='category'>{teacher.category}</div>
-							<div className='class'>{teacher.classTeacherOf}</div>
-						</div>
-					);
-				})}
+				{filteredTeachers.length === 0 ? (
+					<h3 style={{ fontWeight: '200', fontSize: '2rem', margin: '2em 0', textAlign: 'center', opacity: '0.6' }}>No Teacher found for search '{filter}'</h3>
+				) : (
+					filteredTeachers.map((e: object) => {
+						const teacher = Object(e);
+
+						return (
+							<div key={teacher.id} className='teacher-item' onClick={()=> navigate(`/teachers/${teacher.id}`)}>
+								<div className='name'>{teacher.name}</div>
+								<div className={`category ${teacher.category}`}>{teacher.category}</div>
+								<div className='class'>{teacher.classTeacherOf !== 'free' ? teacher.classTeacherOf : '- -'}</div>
+							</div>
+						);
+					})
+				)}
 			</div>
 		</div>
 	);

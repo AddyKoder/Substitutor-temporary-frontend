@@ -1,0 +1,41 @@
+
+.teacher header{
+	display:flex;
+	align-items: center;
+	justify-content: space-between;
+	padding-inline: 2em;
+	margin-top: 3em;
+}
+
+.teacher header h2{
+	font-size: 3rem;
+	font-weight: 300;
+	text-transform: capitalize;
+	margin-block: 0;
+}
+.teacher h3{
+	margin: 0.5em 0;
+	margin-bottom: 3em;
+}
+
+.teacher .timeTable table{
+	margin:auto;
+	font-size: 1.5rem;
+	font-weight: 200;
+	border-collapse: collapse;
+}
+
+.teacher .timeTable table td,.teacher .timeTable th{
+	padding: 0.5em 2em;
+	text-align: center;
+}
+
+.teacher .timeTable th{
+	opacity: 0.7;
+}
+
+
+
+.teacher .timeTable td, .teacher .timeTable th{
+	border: 1px solid rgba(128, 128, 128, 0.164)
+}

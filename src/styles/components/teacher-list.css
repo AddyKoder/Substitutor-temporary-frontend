@@ -1,4 +1,3 @@
-
 .teachers-list .teacher-item{
 	box-sizing: border-box;
 	width: 100%;
@@ -9,6 +8,11 @@
 	padding: 0.7em 2em;
 	font-weight: 400;
 	font-size: 1.2rem;
+	border: 2px solid transparent; 
+	transition: border-color 0.2s ease-in-out;
+}
+.teachers-list li{
+	list-style-position: inside;
 }
 
 .teacher-item.header{
@@ -21,7 +25,7 @@
 .teacher-item .name{
 	width:50%;
 }
-.teacher-item .category{
+.category{
 	width: 25%;
 }
 .teacher-item .class{
@@ -32,7 +36,7 @@
 	background-color: rgba(255, 255, 255, 0.02);
 }
 
-.teacher-item:hover::before{
+/* .teacher-item:hover::before{
 	content:"";
 	position:absolute;	
 	width: 13px;
@@ -41,11 +45,73 @@
 	transform: translate(-15px, 0px);
 	box-shadow: 0 0 10px 3px var(--color-accent);
 	border-radius: 50%;
-}
+} */
+
 .teacher-item:hover{
 	cursor: pointer;
+	border: 2px solid rgba(23, 143, 255, 0.404) 
+}
+
+.category{
+	width: max-content;
+	/* margin-right: 13em; */
+	padding: 0 1em 0.15em 1em;
+	border-radius: 10em;
+	font-weight: 200;
+	border: 1px solid transparent;
+	text-transform: capitalize;
+}
+
+.teacher-item .name{
+	text-transform: capitalize;
+	font-weight: 200;
+}
+.teacher-item .class{
+	text-transform: uppercase;
 }
 
 .teacher-item div{
-	padding-left: 1em;
+	text-align: center;
+}
+.teacher-item .name{
+	text-align: left;
+}
+
+.teacher-item.header div{
+	font-weight: 400;
+	text-transform: uppercase;
+	font-size: 1.3rem;
+}
+
+.category.junior{
+	color: orangered;
+	border-color:orangered;
+}
+.category.senior{
+	color: yellow;
+	border-color:yellow;
+}
+.category.pgt{
+	color: blueviolet;
+	border-color: blueviolet;
+}
+
+
+
+.button{
+	font-size: 1.2rem;
+	padding: 0.3em 1em;
+	border-radius: 10em;
+	border:none;
+	transition: transform 0.1s;
+}
+.button:hover{
+	cursor: pointer;
+	transform: scale(1.05);
+}
+.btn-em{
+	background-color: var(--color-accent);
+}
+.btn-del{
+	background-color: red;
 }

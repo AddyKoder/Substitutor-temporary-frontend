@@ -1,17 +1,19 @@
 import Notification from '../components/Notification';
 import Spinner from '../components/Spinner';
-import { useEffect, useState} from 'react';
+import { useEffect, useState } from 'react';
 import TeacherList from '../components/TeacherList';
 import { typeTeacher } from '../utils/types';
+import { useNavigate } from 'react-router-dom';
 
 export default function AllTeachers() {
 	// this state can either hold the actual data or it
 	// can hold fetch status values like pending, success
 	// , fail etc.
 	const [teachers, setTeachers] = useState<string | typeTeacher[]>('pending');
-	const [search, setSearch] = useState<string>('')
-	const [debouncedSearch, setDebouncedSearch] = useState<string>('')
-	
+	const [search, setSearch] = useState<string>('');
+	const [debouncedSearch, setDebouncedSearch] = useState<string>('');
+
+	const navigate = useNavigate();
 
 	// fetching the teacher's database
 	useEffect(() => {
@@ -31,42 +33,51 @@ export default function AllTeachers() {
 				setTeachers('failed');
 			});
 	}, []);
-	
+
 	// updating the debounced Search
 	useEffect(() => {
 		const timeOut = setTimeout(() => {
-			setDebouncedSearch(search)	
+			setDebouncedSearch(search);
 		}, 500);
 
 		return () => {
-			clearTimeout(timeOut)
-		}
-	},[search])
+			clearTimeout(timeOut);
+		};
+	}, [search]);
 
-		return (
+	return (
 		<div className='all-teachers'>
 			<header>
 				<h1>Teachers List</h1>
-				<div className="search">
-					<input type="text" placeholder='Search' onChange={e => setSearch(e.target.value)}/>
+				{/* button for adding teacher */}
+				<button className='button btn-em' style={{ display: 'flex' }} onClick={() => navigate('/teachers/create')}>
+					<img
+						src='/add.svg'
+						alt='add teacher'
+						style={{ height: '25px', aspectRatio: '1/1', filter: 'invert(100%) sepia(1%) saturate(135%) hue-rotate(255deg) brightness(116%) contrast(100%)' }}
+					/>
+					<span style={{ marginLeft: '10px' }}>Teacher</span>
+				</button>
+				{/* Search box */}
+				<div className='search'>
+					<input type='text' placeholder='Search' onChange={e => setSearch(e.target.value)} />
 				</div>
 			</header>
 
-				{/* rendering specific element on various states */}
-				{/* if fetching is pending */}
-				{teachers === 'pending' ? (
-					<Spinner />
-				) : // if fetching has failed
-				teachers === 'failed' ? (
-					<Notification
-						type='error'
-						heading='Cannot Fetch Data'
-						content='Seems like you are not in an environment with a valid database available, Try restarting the application or contact the developer - Aditya Tripathi'
-					/>
-				) : /* if fetching succeed*/(
-							<TeacherList teachers={teachers as typeTeacher[]} filter={debouncedSearch} />
-				)}
-
+			{/* rendering specific element on various states */}
+			{/* if fetching is pending */}
+			{teachers === 'pending' ? (
+				<Spinner />
+			) : // if fetching has failed
+			teachers === 'failed' ? (
+				<Notification
+					type='error'
+					heading='Cannot Fetch Data'
+					content='Seems like you are not in an environment with a valid database available, Try restarting the application or contact the developer - Aditya Tripathi'
+				/>
+			) : (
+				/* if fetching succeed*/ <TeacherList teachers={teachers as typeTeacher[]} filter={debouncedSearch} />
+			)}
 		</div>
 	);
 }
