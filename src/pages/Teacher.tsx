@@ -3,47 +3,42 @@ import { useEffect, useState } from 'react';
 import { typeTeacher } from '../utils/types';
 import Spinner from '../components/Spinner';
 import Notification from '../components/Notification';
-import { useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom';
 
-interface fullTypeTeacher extends typeTeacher{
-	timeTable:object
+interface fullTypeTeacher extends typeTeacher {
+	timeTable: object;
 }
 
 export default function Teacher() {
 	const { id } = useParams();
 	const [teacher, setTeacher] = useState<string | fullTypeTeacher>('pending');
-	const timetable = Object(teacher).timeTable
-	const navigate = useNavigate()
-
-	function fetchData() {
-		fetch(`http://127.0.0.1:8000/teacher/${id}`)
-					// fetching successfully
-					.then(r => {
-						if (r.status === 200) {
-							return r.json();
-						}
-						throw new Error('invalid status code');
-					})
-					.then(r => {
-						setTeacher(r);
-					})
-					// if some error occured
-					.catch(() => {
-						setTeacher('failed');
-					});
-	}
+	const timetable = Object(teacher).timeTable;
+	const navigate = useNavigate();
 
 	function delTeacher() {
-		if(!confirm(`Are you sure you want to delete Teacher`)) return 
-		fetch(`http://127.0.0.1:8000/teacher/${id}`, {method:'delete'})
-		fetchData()
+		if (!confirm(`Are you sure you want to delete Teacher`)) return;
+		fetch(`http://127.0.0.1:8000/teacher/${id}`, { method: 'delete' });
 		setTimeout(() => {
-			navigate('/teachers')
+			navigate('/teachers');
 		}, 100);
 	}
 	// fetching Teacher's data
 	useEffect(() => {
-		fetchData()	
+		fetch(`http://127.0.0.1:8000/teacher/${id}`)
+			// fetching successfully
+			.then(r => {
+				if (r.status === 200) {
+					return r.json();
+				}
+				throw new Error('invalid status code');
+			})
+			.then(r => {
+				setTeacher(r);
+			})
+			// if some error occured
+			.catch(() => {
+				setTeacher('failed');
+			});
 	}, []);
 
 	return (
@@ -72,39 +67,47 @@ export default function Teacher() {
 						</button>
 					</div>
 				</header>
-							<h3 style={{fontWeight: '200', fontSize: '1.5rem', padding: '0 1.5em'}}>Class Teacher of {teacher.classTeacherOf === 'free'? 'None' : teacher.classTeacherOf}</h3> 
-							<div className='timeTable'>
-								<table>
-									<thead>
-									<tr>
-										<th>Day</th>
-										<th>1</th>
-										<th>2</th>
-										<th>3</th>
-										<th>4</th>
-										<th>5</th>
-										<th>6</th>
-										<th>7</th>
-										<th>8</th>
+				<h3 style={{ fontWeight: '200', fontSize: '1.5rem', padding: '0 1.5em' }}>Class Teacher of {teacher.classTeacherOf === 'free' ? 'None' : teacher.classTeacherOf}</h3>
+				<div className='timeTable'>
+					<table>
+						<thead>
+							<tr>
+								<th>Day</th>
+								<th>1</th>
+								<th>2</th>
+								<th>3</th>
+								<th>4</th>
+								<th>5</th>
+								<th>6</th>
+								<th>7</th>
+								<th>8</th>
+							</tr>
+						</thead>
+						<tbody>
+							{['mon', 'tue', 'wed', 'thu', 'fri', 'sat'].map(day => {
+								return (
+									<tr key={day}>
+										<>
+											<td>{day}</td>
+											{[0, 1, 2, 3, 4, 5, 6, 7].map(period => {
+												return (
+													<td
+														key={period}
+														style={{
+															color: timetable[day][period] === 'free' ? 'grey' : 'white',
+															fontWeight: timetable[day][period] === 'free' ? '200' : '400',
+														}}
+													>
+														{timetable[day][period] === 'free' ? '- -' : timetable[day][period]}
+													</td>
+												);
+											})}
+										</>
 									</tr>
-									</thead>
-									<tbody>
-									{
-										['mon', 'tue', 'wed', 'thu', 'fri', 'sat'].map(day => {
-											return (
-												<tr key={day}>
-													<>
-														<td>{day}</td>
-													{[0, 1, 2, 3, 4, 5, 6, 7].map(period => {
-														return <td key={period} style={{opacity: timetable[day][period] === 'free'? '0.5': '1', fontWeight:timetable[day][period] === 'free'? '200':'400'}}>{timetable[day][period]==='free'? '- - ':timetable[day][period]}</td>
-													})}
-													</>
-												</tr>
-											)
-										})
-									}
-								</tbody>
-								</table>
+								);
+							})}
+						</tbody>
+					</table>
 				</div>
 			</div>
 		)
