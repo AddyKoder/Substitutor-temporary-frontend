@@ -55,6 +55,7 @@ export default function Attendence() {
 }
 
 function AbsentTeachers({ teachersIds }: { teachersIds: number[] }) {
+	const navigate = useNavigate()
 	async function fetchTeacher(id: number) {
 		const res = await fetch(`http://127.0.0.1:8000/teacher/${id}`);
 		const teacher = await res.json();
@@ -71,5 +72,5 @@ function AbsentTeachers({ teachersIds }: { teachersIds: number[] }) {
 	});
 
 	// eslint-disable-next-line @typescript-eslint/no-explicit-any
-	return <div className='absent-teachers-list'>{teachers === 'pending' ? <Spinner /> : <TeacherList teachers={teachers as any} filter='' displayHeader={false} />}</div>;
+	return <div className='absent-teachers-list'>{teachers === 'pending' ? <Spinner /> : <TeacherList onClick={id => navigate(`/teachers/${id}`)} teachers={teachers as any} filter='' displayHeader={false} />}</div>;
 }

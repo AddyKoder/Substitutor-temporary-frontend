@@ -49,7 +49,7 @@
 
 .teacher-item:hover{
 	cursor: pointer;
-	border: 2px solid rgba(23, 143, 255, 0.404) 
+	border: 2px solid rgba(23, 143, 255, 0.404)!important; 
 }
 
 .category{

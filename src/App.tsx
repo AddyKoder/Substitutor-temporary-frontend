@@ -12,7 +12,6 @@ import './styles/typography.css'
 import './styles/pages/allTeachers.css'
 import './styles/pages/teacher.css'
 import './styles/pages/createTeacher.css'
-import './styles/pages/attendence.css'
 
 
 export default function App() {

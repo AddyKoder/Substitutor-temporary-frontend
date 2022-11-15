@@ -1,12 +1,11 @@
 import { typeTeacher } from '../utils/types';
-import { useNavigate } from 'react-router-dom';
 
-export default function TeacherList({ teachers, filter, displayHeader=true}: { teachers: typeTeacher[], filter: string, displayHeader?:boolean}) {
+export default function TeacherList({ teachers, filter, displayHeader=true, onClick, selected=[]}: {selected?:number[], teachers: typeTeacher[], filter: string, displayHeader?:boolean, onClick:(e:number)=>void}) {
 	// filter the teachers array with the give string
 	const filteredTeachers = teachers.filter(e => {
 		const teacher = Object(e);
 		for (const item of Object.values(teacher)) {
-			if (String(item).toLowerCase().includes(filter.toLowerCase().replaceAll(' ',''))) {
+			if (String(item).toLowerCase().includes(filter.toLowerCase())) {
 				return 1;
 			}
 		}
@@ -18,8 +17,6 @@ export default function TeacherList({ teachers, filter, displayHeader=true}: { t
 		else if (t1.name.toLowerCase() < t2.name.toLowerCase()) return -1
 		return 0
 	})
-
-	const navigate = useNavigate()
 
 	return (
 		<div className='teachers-list'>
@@ -39,7 +36,7 @@ export default function TeacherList({ teachers, filter, displayHeader=true}: { t
 						const teacher = Object(e);
 
 						return (
-							<div key={teacher.id} className='teacher-item' onClick={()=> navigate(`/teachers/${teacher.id}`)}>
+							<div style={{marginBlock:'.5em',outline:selected.includes(teacher.id)? '2px solid red':'2px solid transparent'}} key={teacher.id} className='teacher-item' onClick={() => { onClick(teacher.id) }}>
 								<div className='name'>{teacher.name}</div>
 								<div className={`category ${teacher.category}`}>{teacher.category}</div>
 								<div className='class'>{teacher.classTeacherOf !== 'free' ? teacher.classTeacherOf : '- -'}</div>

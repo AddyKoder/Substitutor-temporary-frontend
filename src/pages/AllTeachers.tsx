@@ -76,7 +76,7 @@ export default function AllTeachers() {
 					content='Seems like you are not in an environment with a valid database available, Try restarting the application or contact the developer - Aditya Tripathi'
 				/>
 			) : (
-				/* if fetching succeed*/ <TeacherList teachers={teachers as typeTeacher[]} filter={debouncedSearch} />
+				/* if fetching succeed*/ <TeacherList teachers={teachers as typeTeacher[]} filter={debouncedSearch} onClick={id => navigate(`/teachers/${id}`)} />
 			)}
 		</div>
 	);
