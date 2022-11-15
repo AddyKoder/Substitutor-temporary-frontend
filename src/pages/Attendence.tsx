@@ -31,7 +31,7 @@ export default function Attendence() {
 			{attendence === 'pending' ? (
 				<Spinner />
 			) : attendence === null ? (
-				<h2 style={{ fontSize: '3rem', marginInline: 'auto', width: 'max-content', opacity: '0.3' }}>Attendence not taken yet</h2>
+				<h2 style={{fontWeight:'200', fontSize: '3rem', marginInline: 'auto', width: 'max-content', opacity: '0.3' }}>Attendence not taken yet</h2>
 			) : attendence === 'error' ? (
 				<Notification
 					type='error'
