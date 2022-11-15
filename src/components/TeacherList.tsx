@@ -1,7 +1,7 @@
 import { typeTeacher } from '../utils/types';
 import { useNavigate } from 'react-router-dom';
 
-export default function TeacherList({ teachers, filter }: { teachers: typeTeacher[]; filter: string }) {
+export default function TeacherList({ teachers, filter, displayHeader=true}: { teachers: typeTeacher[], filter: string, displayHeader?:boolean}) {
 	// filter the teachers array with the give string
 	const filteredTeachers = teachers.filter(e => {
 		const teacher = Object(e);
@@ -24,11 +24,12 @@ export default function TeacherList({ teachers, filter }: { teachers: typeTeache
 	return (
 		<div className='teachers-list'>
 			{/* Header of the list */}
-			<div className='header teacher-item'>
+
+			{displayHeader && <div className='header teacher-item'>
 				<div className='name'> Name</div>
 				<div className='category'>Category</div>
 				<div className='class'>Class</div>
-			</div>
+			</div>}
 			{/* The List begins here */}
 			<div className='teachers'>
 				{filteredTeachers.length === 0 ? (
