@@ -103,11 +103,11 @@
 	padding: 0.3em 1em;
 	border-radius: 10em;
 	border:none;
-	transition: transform 0.1s;
+	transition: opacity 0.1s;
 }
 .button:hover{
 	cursor: pointer;
-	transform: scale(1.05);
+	opacity: 0.8;
 }
 .btn-em{
 	background-color: var(--color-accent);

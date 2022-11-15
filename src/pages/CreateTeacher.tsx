@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import TimetableEntry from '../components/TimeTableEntry';
 
-const allClasses: string[] = ['none'];
+const allClasses: string[] = [];
 for (const classN of [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]) {
 	for (const section of ['a', 'b', 'c', 'd']) {
 		allClasses.push(`${classN}-${section}`);
@@ -10,7 +10,7 @@ for (const classN of [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]) {
 
 export default function CreateTeacher() {
 	const [tName, setTname] = useState('');
-	const [tClass, setTclass] = useState('');
+	const [tClass, setTclass] = useState('free');
 	const [tCategory, setTcategory] = useState('junior');
 	// assigning initial timetable
 	const [tTimetable, setTtimetable] = useState({
@@ -47,7 +47,7 @@ export default function CreateTeacher() {
 				console.log(r)
 				if (r.includes('created')) {
 					setTname('')
-					setTclass('none')
+					setTclass('free')
 					setTtimetable({
 		'mon': ['free', 'free', 'free', 'free', 'free', 'free', 'free', 'free'],
 		'tue': ['free', 'free', 'free', 'free', 'free', 'free', 'free', 'free'],
@@ -81,7 +81,8 @@ export default function CreateTeacher() {
 				{/* Class Teacher of Input */}
 				<span>
 					<label htmlFor='class-input'>Class Teacher of</label>
-					<select name='class' id='class-input' style={{textTransform:'uppercase'}} value={tClass} onChange={e => setTclass(e.target.value)}>
+					<select name='class' id='class-input' style={{ textTransform: 'uppercase' }} value={tClass} onChange={e => setTclass(e.target.value)}>
+						<option value="free" style={{ textTransform: 'uppercase' }}>None</option>
 						{allClasses.map(classN => {
 							return (
 								<option key={classN} value={classN} style={{ textTransform: 'uppercase' }}>

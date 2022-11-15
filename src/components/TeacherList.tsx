@@ -6,13 +6,18 @@ export default function TeacherList({ teachers, filter }: { teachers: typeTeache
 	const filteredTeachers = teachers.filter(e => {
 		const teacher = Object(e);
 		for (const item of Object.values(teacher)) {
-			if (String(item).toLowerCase().includes(filter.toLowerCase())) {
+			if (String(item).toLowerCase().includes(filter.toLowerCase().replaceAll(' ',''))) {
 				return 1;
 			}
 		}
 
 		return 0;
-	});
+	}).sort((a,b) => {
+		const [t1, t2] = [Object(a), Object(b)]
+		if (t1.name.toLowerCase() > t2.name.toLowerCase()) return 1
+		else if (t1.name.toLowerCase() < t2.name.toLowerCase()) return -1
+		return 0
+	})
 
 	const navigate = useNavigate()
 
@@ -27,7 +32,7 @@ export default function TeacherList({ teachers, filter }: { teachers: typeTeache
 			{/* The List begins here */}
 			<div className='teachers'>
 				{filteredTeachers.length === 0 ? (
-					<h3 style={{ fontWeight: '200', fontSize: '2rem', margin: '2em 0', textAlign: 'center', opacity: '0.6' }}>No Teacher found for search '{filter}'</h3>
+					<h3 style={{ fontWeight: '200', fontSize: '2rem', margin: '2em 0', textAlign: 'center', opacity: '0.6' }}>No Teacher found {filter.replaceAll(' ','') !== ''? `for search '${filter}'` : ''}</h3>
 				) : (
 					filteredTeachers.map((e: object) => {
 						const teacher = Object(e);
