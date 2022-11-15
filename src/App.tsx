@@ -8,6 +8,7 @@ import './styles/components/teacher-list.css'
 
 import './styles/default.css'
 import './styles/typography.css'
+import './styles/media.css'
 
 import './styles/pages/allTeachers.css'
 import './styles/pages/teacher.css'
