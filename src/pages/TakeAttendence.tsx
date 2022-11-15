@@ -70,8 +70,16 @@ export default function TakeAttendence() {
 			<h1 style={{ padding: '0 .8em', margin: '.8em 0' }}>Take Attendence</h1>
 			<h2 style={{ fontSize: '2rem', opacity: '0.3', fontWeight: '200', paddingInline: '1em' }}>Select Teachers which are Absent today : {new Date().toISOString().slice(0, 10)}</h2>
 			<TeacherList onClick={handleClick} selected={selected} filter='' teachers={teachers as unknown as typeTeacher[]} />
+			
+		<p style={{fontSize:'1.5rem', opacity:'0.5', fontWeight:'200', marginTop:'2em'}}>Are you Sure the following teachers are absent</p>
+			{Array(...teachers).map(teacher => {
+				if (selected.includes(Object(teacher).id)) {
+					return <span style={{textTransform:'capitalize', padding:'0 1em'}} key={Object(teacher).id}>{Object(teacher).name}</span>
+				}
+			})}
 
 			<button onClick={handleSubmit} className='button btn-em' style={{width: '100%', margin:'2em 0'}}>Submit Attendence</button>
+
 		</div>
 	);
 }
