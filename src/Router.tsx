@@ -1,4 +1,4 @@
-import { Route, Routes, BrowserRouter } from 'react-router-dom';
+import { Route, Routes, HashRouter} from 'react-router-dom';
 // Importing Navbar
 import Navbar from './components/Navbar';
 // Importing all pages
@@ -11,7 +11,7 @@ import Teacher from './pages/Teacher';
 
 export default function Router() {
 	return (
-		<BrowserRouter>
+		<HashRouter>
 			<Routes>
 				{/* All Routes configuration */}
 				<Route path='/' element={<Navbar />}>
@@ -30,6 +30,6 @@ export default function Router() {
 					</Route>
 				</Route>
 			</Routes>
-		</BrowserRouter>
+		</HashRouter>
 	);
 }
