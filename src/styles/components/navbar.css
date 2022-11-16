@@ -41,3 +41,35 @@ a:hover{
 	background-color: rgba(0, 132, 255, 0.171);
 	border-color: var(--color-accent);
 }
+
+
+
+
+.main-app{
+	min-height: 73vh;
+}
+.developer{
+	position: sticky;
+	padding: 0.1em 2em;
+	bottom: 0;
+	background-color: var(--color-bg-light-dark);
+	border-radius: 1em;
+	opacity: .5;
+	transition: opacity 0.2s ease-in-out;
+}
+.developer>h2{
+	font-weight: 300;
+	font-size: 1.3rem;
+	text-align: center;
+	margin-block: 1em;
+}
+.developer:hover{
+	opacity: 1;
+}
+.developer>h2>span{
+	opacity: 0.8;
+	font-weight: 200;
+}
+.developer a{
+	border-bottom: 2px dotted var(--color-accent);
+}

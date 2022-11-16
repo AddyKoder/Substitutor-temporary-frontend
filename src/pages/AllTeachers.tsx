@@ -50,11 +50,11 @@ export default function AllTeachers() {
 			<header>
 				<h1>Teachers List</h1>
 				{/* button for adding teacher */}
-				<button className='button btn-em' style={{ display: 'flex' }} onClick={() => navigate('/teachers/create')}>
+				<button className='button btn-em' style={{ display: 'flex', alignItems:'center'}} onClick={() => navigate('/teachers/create')}>
 					<img
 						src='/SAS-frontend/build/add.svg'
 						alt='add teacher'
-						style={{ height: '25px', aspectRatio: '1/1', filter: 'invert(100%) sepia(1%) saturate(135%) hue-rotate(255deg) brightness(116%) contrast(100%)' }}
+						style={{ height: '1.5rem', aspectRatio: '1/1', filter: 'invert(100%) sepia(1%) saturate(135%) hue-rotate(255deg) brightness(116%) contrast(100%)' }}
 					/>
 					<span style={{ marginLeft: '10px' }}>Teacher</span>
 				</button>

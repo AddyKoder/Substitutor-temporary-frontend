@@ -1,13 +1,13 @@
 :root{
 	--color-bg:rgb(5, 15, 32);
 	--color-bg-light: rgb(27, 40, 59);
+	--color-bg-light-dark: rgb(16, 26, 41);
 	--color-accent: rgb(0, 153, 255);
 }
 *{
 	font-family:'IBM Plex Sans', 'Segoe UI';
 }
 body{
-
 	background-color: var(--color-bg);
 }
 
