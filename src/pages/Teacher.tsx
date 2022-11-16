@@ -60,7 +60,7 @@ export default function Teacher() {
 					<div className='teacher-actions'>
 						<button className='button btn-del' style={{ display: 'flex' }} onClick={delTeacher}>
 							<img
-								src='/del.svg'
+								src='/SAS-frontend/build/del.svg'
 								style={{ height: '25px', aspectRatio: '1/1', filter: 'invert(100%) sepia(1%) saturate(135%) hue-rotate(255deg) brightness(116%) contrast(100%)' }}
 							/>
 							<span style={{ marginLeft: '10px' }}>Teacher</span>

@@ -52,7 +52,7 @@ export default function AllTeachers() {
 				{/* button for adding teacher */}
 				<button className='button btn-em' style={{ display: 'flex' }} onClick={() => navigate('/teachers/create')}>
 					<img
-						src='/add.svg'
+						src='/SAS-frontend/build/add.svg'
 						alt='add teacher'
 						style={{ height: '25px', aspectRatio: '1/1', filter: 'invert(100%) sepia(1%) saturate(135%) hue-rotate(255deg) brightness(116%) contrast(100%)' }}
 					/>
