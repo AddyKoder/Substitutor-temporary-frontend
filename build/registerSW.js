@@ -1,1 +1,1 @@
-if('serviceWorker' in navigator) {window.addEventListener('load', () => {navigator.serviceWorker.register('/addykoder/sw.js', { scope: '/addykoder/' })})}
+if('serviceWorker' in navigator) {window.addEventListener('load', () => {navigator.serviceWorker.register('/SAS-frontend/build/sw.js', { scope: '/SAS-frontend/build/' })})}
