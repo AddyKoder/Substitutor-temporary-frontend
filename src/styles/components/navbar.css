@@ -50,9 +50,10 @@ a:hover{
 }
 .developer{
 	position: sticky;
-	padding: 0.1em 2em;
+	padding: 1em;
 	bottom: 0;
 	background-color: var(--color-bg-light-dark);
+	margin-block: .75em 1.5em;
 	border-radius: 1em;
 	opacity: .5;
 	transition: opacity 0.2s ease-in-out;
@@ -61,7 +62,7 @@ a:hover{
 	font-weight: 300;
 	font-size: 1.3rem;
 	text-align: center;
-	margin-block: 1em;
+	margin: 0;
 }
 .developer:hover{
 	opacity: 1;

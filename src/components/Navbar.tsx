@@ -3,6 +3,7 @@ import { Outlet, Link, useResolvedPath, useMatch } from 'react-router-dom';
 export default function Navbar() {
 	return (
 		<>
+			<Footer />
 			<div className='Navbar'>
 				<div className='logo'>SAS</div>
 				<div className='nav-links'>
@@ -14,7 +15,6 @@ export default function Navbar() {
 			<div className='main-app'>
 				<Outlet />
 			</div>
-			<Footer />
 		</>
 	);
 }
