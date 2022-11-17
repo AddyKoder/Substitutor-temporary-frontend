@@ -24,8 +24,8 @@ export default function CreateTeacher() {
 
 	// eslint-disable-next-line @typescript-eslint/no-explicit-any
 	function submitForm(e: any) {
-		e.preventDefault();
-
+		e.preventDefault()
+		
 		const submitTeacherObject = {
 			name: tName,
 			category: tCategory,
@@ -44,8 +44,13 @@ export default function CreateTeacher() {
 				return r.text();
 			})
 			.then(r => {
-				console.log(r)
 				if (r.includes('created')) {
+
+					e.target.setAttribute('submitted', 'true')
+					setTimeout(() => {
+					e.target.setAttribute('submitted', 'false')
+					}, 3000);
+
 					setTname('')
 					setTclass('free')
 					setTtimetable({

@@ -95,3 +95,9 @@ th:hover::after {
 .create-teacher th{
 	padding: 1em 0;
 }
+
+form[submitted='true']{
+	background: url('/ok.svg');
+	background-position: center center;
+	background-repeat: no-repeat;
+}
