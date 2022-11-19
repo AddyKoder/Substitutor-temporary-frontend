@@ -60,7 +60,7 @@ export default function TakeAttendence() {
 				if (r.status === 200) {
 					setTimeout(() => {
 						navigate('/')
-					}, 100);
+					}, 1200);
 				}
 			}).catch(() => console.log('some Error occured')
 			)
