@@ -23,3 +23,23 @@
 	text-align: center;
 	padding: 0.5em 1em;
 }
+
+
+.reschedules header{
+	display:flex;
+	align-items: center;
+	justify-content: space-between;
+}
+.reschedules header>button{
+	padding: .2em 1em;
+	margin-right: 2em;
+	font-size: 1.3rem;
+	background-color: var(--color-accent);
+	border:none;
+	border-radius: 2em;
+}
+
+button:hover{
+	cursor: pointer;
+	opacity: .8
+}

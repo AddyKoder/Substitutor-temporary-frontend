@@ -26,7 +26,13 @@ export default function Reschedules() {
 
 	return (
 		<div className='reschedules'>
+			<header>
 			<h1 style={{ padding: '0 .8em', margin: '.8em 0' }}>Reschedules : <span style={{ opacity: '0.5', fontWeight: '200'}}>{new Date().toISOString().slice(0, 10)}</span></h1>
+				<button onClick={() => {
+					fetch('http://127.0.0.1:8000/reschedule/upload').then(() => {
+				alert('Uploading Reschedules')
+			})}}>Upload</button>
+			</header>
 			{reschedules === 'pending' ? <Spinner /> :
 				reschedules === 'failed' ? <Notification type='error' heading='Cannot fetch Reschedules' content='The application cannot fetch reschedules from the database, Try restarting the application or contact the developer - Aditya Tripathi' /> :
 					reschedules === 'null'?<h2 style={{fontSize:'3rem', textAlign:'center', opacity:'0.3', fontWeight:'200'}}>Attendence not taken yet</h2>:
