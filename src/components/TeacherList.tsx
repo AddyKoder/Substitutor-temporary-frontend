@@ -40,7 +40,7 @@ export default function TeacherList({ teachers, filter, displayHeader=true, onCl
 							<div style={{marginBlock:'.5em',outline:selected.includes(teacher.id)? '2px solid red':'2px solid transparent'}} key={teacher.id} className='teacher-item' onClick={() => { onClick(teacher.id) }}>
 								<div className='name'>{teacher.name}</div>
 								<div className={`category ${teacher.category}`}>{teacher.category}</div>
-								<div className='class'>{teacher.classTeacherOf !== 'free' ? teacher.classTeacherOf : '- -'}</div>
+								<div className='class'>{teacher.classTeacherOf === 'free' ?'- -': teacher.classTeacherOf === 'busy'? '-X-': teacher.classTeacherOf}</div>
 							</div>
 						);
 					})

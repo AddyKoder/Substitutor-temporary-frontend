@@ -71,7 +71,7 @@ export default function Teacher() {
 					</div>
 				</header>
 				<h3 style={{ marginBottom: 0, fontWeight: '200', fontSize: '1.5rem', padding: '0 1.5em', opacity: '0.5' }}>ID: {teacher.id}</h3>
-				<h3 style={{ fontWeight: '200', fontSize: '1.5rem', padding: '0 1.5em' }}>Class Teacher of <span style={{textTransform:'capitalize'}}>{teacher.classTeacherOf === 'free' ? 'None' : teacher.classTeacherOf}</span></h3>
+				<h3 style={{ fontWeight: '200', fontSize: '1.5rem', padding: '0 1.5em' }}>Class Teacher of <span style={{textTransform:'capitalize'}}>{teacher.classTeacherOf === 'free' ? 'None' : teacher.classTeacherOf ==='busy' ? 'None but busy': teacher.classTeacherOf}</span></h3>
 				<div className='timeTable'>
 					<table>
 						<thead>

@@ -100,6 +100,7 @@ export default function TeacherForm({ name, className, category, timeTable, onSu
 						<option value='free' style={{ textTransform: 'uppercase' }}>
 							None
 						</option>
+						<option value='busy' style={{textTransform:'uppercase'}}>Busy</option>
 						{allClasses.map(classN => {
 							return (
 								<option key={classN} value={classN} style={{ textTransform: 'uppercase' }}>
