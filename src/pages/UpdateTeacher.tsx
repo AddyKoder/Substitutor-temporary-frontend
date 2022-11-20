@@ -48,6 +48,7 @@ export default function UpdateTeacher() {
 				// deleting the _id property on timetable
 				// this was before causing an error in the backend
 				// by failing the data verifier
+				if (! confirm('Please recheck the modifications for any errors. Do you want to continue modifying?')) return 
 				delete Object(teacherData).timeTable._id
 				fetch(`http://127.0.0.1:8000/teacher/${id}`, {
 					method: 'post',
