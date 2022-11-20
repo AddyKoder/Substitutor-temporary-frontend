@@ -26,10 +26,6 @@
 	font-size: 1.2rem;
 }
 
-.timetable-entry select:focus{
-	outline:none;
-}
-
 .timetable-entry td{
 	padding: 0.5em
 }
