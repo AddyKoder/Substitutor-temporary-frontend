@@ -18,8 +18,7 @@
 .teacher-item.header{
 	background-color: var(--color-accent);
 	opacity: 0.9;
-	margin-bottom: 1em;
-	margin-top: 3em;
+	margin-block:1em;
 }
 
 .teacher-item .name{
@@ -114,4 +113,12 @@
 }
 .btn-del{
 	background-color: red;
+}
+
+.header-info{
+	text-align: right;
+	opacity: .5;
+	font-weight: 200;
+	font-size: 1.2rem;	
+	padding-right: 2em;
 }

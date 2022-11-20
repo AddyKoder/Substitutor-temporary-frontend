@@ -19,9 +19,10 @@ export default function TeacherList({ teachers, filter, displayHeader=true, onCl
 	})
 
 	return (
+		<>
+			<p className='header-info'>Showing {filteredTeachers.length} out of {teachers.length} teachers {filter === '' ? '' : <span> for search = '{filter}'</span>}</p>
 		<div className='teachers-list'>
 			{/* Header of the list */}
-
 			{displayHeader && <div className='header teacher-item'>
 				<div className='name'> Name</div>
 				<div className='category'>Category</div>
@@ -46,5 +47,6 @@ export default function TeacherList({ teachers, filter, displayHeader=true, onCl
 				)}
 			</div>
 		</div>
-	);
+	</>
+	)
 }
