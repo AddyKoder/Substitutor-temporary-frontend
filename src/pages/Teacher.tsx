@@ -99,10 +99,10 @@ export default function Teacher() {
 														key={period}
 														style={{
 															color: timetable[day][period] === 'free' || timetable[day][period] === 'busy' ? 'grey' : 'white',
-															fontWeight: timetable[day][period] === 'free' ? '200' : '400',
+															fontWeight: timetable[day][period] === 'free' || timetable[day][period] ==='busy' ? '200' : '400',
 														}}
 													>
-														{timetable[day][period] === 'free' ? '- -' : timetable[day][period] === 'busy'? '* *': timetable[day][period]}
+														{timetable[day][period] === 'free' ? '- -' : timetable[day][period] === 'busy'? 'busy': timetable[day][period]}
 													</td>
 												);
 											})}
