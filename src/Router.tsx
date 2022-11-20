@@ -1,10 +1,11 @@
-import { Route, Routes, HashRouter} from 'react-router-dom';
+import { Route, Routes, HashRouter } from 'react-router-dom';
 // Importing Navbar
 import Navbar from './components/Navbar';
 // Importing all pages
 import AllTeachers from './pages/AllTeachers';
 import Attendence from './pages/Attendence';
 import CreateTeacher from './pages/CreateTeacher';
+import UpdateTeacher from './pages/UpdateTeacher'
 import Reschedules from './pages/Reschedules';
 import TakeAttendence from './pages/TakeAttendence';
 import Teacher from './pages/Teacher';
@@ -22,6 +23,7 @@ export default function Router() {
 						<Route index element={<AllTeachers />} />
 						<Route path='/teachers/:id' element={<Teacher />} />
 						<Route path='/teachers/create' element={<CreateTeacher />} />
+						<Route path='/teachers/update/:id' element={<UpdateTeacher/>} />	
 					</Route>
 					{/* routes for attendence */}
 					<Route path='/attendence'>

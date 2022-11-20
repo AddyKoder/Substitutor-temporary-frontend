@@ -19,6 +19,7 @@ export default function TimetableEntry({ timetable, setTimetable }: { timetable:
 
 				<tbody>
 					{Object.keys(timetable).map(day => {
+						if (day === '_id') return 
 						return (
 							<tr key={day}>
 								<td style={{opacity:'0.6', textTransform:'uppercase'}}>{day}</td>
