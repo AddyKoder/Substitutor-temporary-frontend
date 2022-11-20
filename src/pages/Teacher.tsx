@@ -100,6 +100,7 @@ export default function Teacher() {
 														style={{
 															color: timetable[day][period] === 'free' || timetable[day][period] === 'busy' ? 'grey' : 'white',
 															fontWeight: timetable[day][period] === 'free' || timetable[day][period] ==='busy' ? '200' : '400',
+															textTransform: !['free', 'busy'].includes(timetable[day][period]) ?'uppercase':'none'
 														}}
 													>
 														{timetable[day][period] === 'free' ? '- -' : timetable[day][period] === 'busy'? 'busy': timetable[day][period]}
