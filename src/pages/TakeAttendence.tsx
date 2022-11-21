@@ -49,7 +49,7 @@ export default function TakeAttendence() {
 	}
 
 	function handleSubmit() {
-		if (confirm('Are you sure to submit attendence?')) {
+		if (confirm('Are you sure to submit attendance?')) {
 			fetch('http://127.0.0.1:8000/attendence', {
 				method: 'post',
 				body: JSON.stringify({ absentTeachers: selected }),
@@ -69,7 +69,7 @@ export default function TakeAttendence() {
 
 	return (
 		<div className='take-attendence'>
-			<h1 style={{ padding: '0 .8em', margin: '.8em 0' }}>Take Attendence</h1>
+			<h1 style={{ padding: '0 .8em', margin: '.8em 0' }}>Take Attendance</h1>
 			<h2 style={{ fontSize: '2rem', opacity: '0.3', fontWeight: '200', paddingInline: '1em' }}>Select Teachers which are Absent today : {new Date().toISOString().slice(0, 10)}</h2>
 			{teachers === 'pending' ? <Spinner /> :
 			teachers === 'failed'? <Notification type='error' heading='Cannot fetch data' content='Due to some incompatibility the application cannot fetch data'/>:
@@ -84,7 +84,7 @@ export default function TakeAttendence() {
 				}
 			})}
 
-			<button onClick={handleSubmit} className='button btn-em' style={{width: '100%', margin:'2em 0', fontSize: '1.4rem'}}>Submit Attendence and Reschedule</button>
+			<button onClick={handleSubmit} className='button btn-em' style={{width: '100%', margin:'2em 0', fontSize: '1.4rem'}}>Submit Attendance and Reschedule</button>
 
 		</div>
 	);

@@ -35,7 +35,7 @@ export default function Reschedules() {
 			</header>
 			{reschedules === 'pending' ? <Spinner /> :
 				reschedules === 'failed' ? <Notification type='error' heading='Cannot fetch Reschedules' content='The application cannot fetch reschedules from the database, Try restarting the application or contact the developer - Aditya Tripathi' /> :
-					reschedules === 'null'?<h2 style={{fontSize:'3rem', textAlign:'center', opacity:'0.3', fontWeight:'200'}}>Attendence not taken yet</h2>:
+					reschedules === 'null'?<h2 style={{fontSize:'3rem', textAlign:'center', opacity:'0.3', fontWeight:'200'}}>Attendance not taken yet</h2>:
 
 					<RescheduleList reschedules={reschedules as object[]} />	
 			}

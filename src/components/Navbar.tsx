@@ -8,7 +8,7 @@ export default function Navbar() {
 				<div className='logo'>SAS</div>
 				<div className='nav-links'>
 					<Clink to='/teachers' name='Teachers' />
-					<Clink to='/attendence' name='Attendence' />
+					<Clink to='/attendence' name='Attendance' />
 					<Clink to='/' name='Reschedules' />
 				</div>
 			</div>

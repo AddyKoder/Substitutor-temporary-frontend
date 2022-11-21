@@ -26,17 +26,17 @@ export default function Attendence() {
 
 	return (
 		<div className='attendence'>
-			<h1 style={{ padding: '0 .8em', margin: '.8em 0' }}>Attendence</h1>
+			<h1 style={{ padding: '0 .8em', margin: '.8em 0' }}>Attendance</h1>
 			{/* displaying various things as per the state of attendence variable */}
 			{attendence === 'pending' ? (
 				<Spinner />
 			) : attendence === null ? (
-				<h2 style={{fontWeight:'200', fontSize: '3rem', marginInline: 'auto', width: 'max-content', opacity: '0.3' }}>Attendence not taken yet</h2>
+				<h2 style={{fontWeight:'200', fontSize: '3rem', marginInline: 'auto', width: 'max-content', opacity: '0.3' }}>Attendance not taken yet</h2>
 			) : attendence === 'error' ? (
 				<Notification
 					type='error'
-					heading='Cannot fetch attendence'
-					content='Some error occured while fetching attendence from the database, Restart the application or call the developer - Aditya Tripathi'
+					heading='Cannot fetch attendance'
+					content='Some error occured while fetching attendance from the database, Restart the application or call the developer - Aditya Tripathi'
 				/>
 			) : attendence.length === 0 ? (
 				<h2 style={{ fontSize: '3rem', marginInline: 'auto', width: 'max-content', opacity: '0.3' }}>No Teacher is Absent Today</h2>
@@ -48,7 +48,7 @@ export default function Attendence() {
 			)}
 
 			<button className='button btn-em' style={{ marginBlock: '2em', width: '100%', fontSize: '1.4rem' }} onClick={() => navigate('/attendence/take')}>
-				{attendence !== null ? 'Re-take' : 'Take'} Attendence
+				{attendence !== null ? 'Re-take' : 'Take'} Attendance
 			</button>
 		</div>
 	);
