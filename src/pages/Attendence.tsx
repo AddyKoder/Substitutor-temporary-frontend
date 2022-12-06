@@ -3,6 +3,7 @@ import Notification from '../components/Notification';
 import Spinner from '../components/Spinner';
 import { useNavigate } from 'react-router-dom';
 import TeacherList from '../components/TeacherList';
+import address from '../serverAddress';
 
 export default function Attendence() {
 	const navigate = useNavigate();
@@ -10,7 +11,7 @@ export default function Attendence() {
 
 	// fetching today's attendence
 	useEffect(() => {
-		fetch('http://127.0.0.1:8000/attendence')
+		fetch(address + '/attendence')
 			.then(r => {
 				if (r.status == 200) return r.json();
 				setAttendence('error');
@@ -31,7 +32,7 @@ export default function Attendence() {
 			{attendence === 'pending' ? (
 				<Spinner />
 			) : attendence === null ? (
-				<h2 style={{fontWeight:'200', fontSize: '3rem', marginInline: 'auto', width: 'max-content', opacity: '0.3' }}>Attendance not taken yet</h2>
+				<h2 style={{ fontWeight: '200', fontSize: '3rem', marginInline: 'auto', width: 'max-content', opacity: '0.3' }}>Attendance not taken yet</h2>
 			) : attendence === 'error' ? (
 				<Notification
 					type='error'
@@ -42,7 +43,7 @@ export default function Attendence() {
 				<h2 style={{ fontSize: '3rem', marginInline: 'auto', width: 'max-content', opacity: '0.3' }}>No Teacher is Absent Today</h2>
 			) : (
 				<>
-									<h2 style={{ fontSize: '2rem', opacity: '0.3', fontWeight: '200', paddingInline: '1em' }}>Absent Teacher's List : {new Date().toISOString().slice(0,10)}</h2>
+					<h2 style={{ fontSize: '2rem', opacity: '0.3', fontWeight: '200', paddingInline: '1em' }}>Absent Teacher's List : {new Date().toISOString().slice(0, 10)}</h2>
 					<AbsentTeachers teachersIds={attendence as number[]} />
 				</>
 			)}
@@ -55,7 +56,7 @@ export default function Attendence() {
 }
 
 function AbsentTeachers({ teachersIds }: { teachersIds: number[] }) {
-	const navigate = useNavigate()
+	const navigate = useNavigate();
 	async function fetchTeacher(id: number) {
 		const res = await fetch(`http://127.0.0.1:8000/teacher/${id}`);
 		const teacher = await res.json();
@@ -72,5 +73,9 @@ function AbsentTeachers({ teachersIds }: { teachersIds: number[] }) {
 	});
 
 	// eslint-disable-next-line @typescript-eslint/no-explicit-any
-	return <div className='absent-teachers-list'>{teachers === 'pending' ? <Spinner /> : <TeacherList onClick={id => navigate(`/teachers/${id}`)} teachers={teachers as any} filter='' displayHeader={false} />}</div>;
+	return (
+		<div className='absent-teachers-list'>
+			{teachers === 'pending' ? <Spinner /> : <TeacherList onClick={id => navigate(`/teachers/${id}`)} teachers={teachers as any} filter='' displayHeader={false} />}
+		</div>
+	);
 }

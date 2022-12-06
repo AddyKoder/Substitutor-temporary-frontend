@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import TimetableEntry from './TimeTableEntry';
+import address from '../serverAddress';
 
 const allClasses: string[] = [];
 for (const classN of [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]) {
@@ -8,26 +9,37 @@ for (const classN of [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]) {
 	}
 }
 
-export default function TeacherForm({ name, className, category, timeTable, onSubmit}:{name?:string, className?:string, category?:string, timeTable?: {[type: string]: string[]; }, onSubmit?:(teacherData:object)=>void }) {
-
+export default function TeacherForm({
+	name,
+	className,
+	category,
+	timeTable,
+	onSubmit,
+}: {
+	name?: string;
+	className?: string;
+	category?: string;
+	timeTable?: { [type: string]: string[] };
+	onSubmit?: (teacherData: object) => void;
+}) {
 	// There are two variable uses of this component
-	// one for creating a teacher and other for 
+	// one for creating a teacher and other for
 	// updating the teacher
 
 	const [tName, setTname] = useState(name || '');
 	const [tClass, setTclass] = useState(className || 'free');
 	const [tCategory, setTcategory] = useState(category || 'junior');
 	// assigning initial timetable
-	const [tTimetable, setTtimetable] = useState(timeTable || {
-		'mon': ['free', 'free', 'free', 'free', 'free', 'free', 'free', 'free'],
-		'tue': ['free', 'free', 'free', 'free', 'free', 'free', 'free', 'free'],
-		'wed': ['free', 'free', 'free', 'free', 'free', 'free', 'free', 'free'],
-		'thu': ['free', 'free', 'free', 'free', 'free', 'free', 'free', 'free'],
-		'fri': ['free', 'free', 'free', 'free', 'free', 'free', 'free', 'free'],
-		'sat': ['free', 'free', 'free', 'free', 'free', 'free'],
-	});
-
-	
+	const [tTimetable, setTtimetable] = useState(
+		timeTable || {
+			'mon': ['free', 'free', 'free', 'free', 'free', 'free', 'free', 'free'],
+			'tue': ['free', 'free', 'free', 'free', 'free', 'free', 'free', 'free'],
+			'wed': ['free', 'free', 'free', 'free', 'free', 'free', 'free', 'free'],
+			'thu': ['free', 'free', 'free', 'free', 'free', 'free', 'free', 'free'],
+			'fri': ['free', 'free', 'free', 'free', 'free', 'free', 'free', 'free'],
+			'sat': ['free', 'free', 'free', 'free', 'free', 'free'],
+		}
+	);
 
 	// eslint-disable-next-line @typescript-eslint/no-explicit-any
 	function submitForm(e: any) {
@@ -41,10 +53,9 @@ export default function TeacherForm({ name, className, category, timeTable, onSu
 		};
 		// posting the data
 		if (onSubmit) {
-			onSubmit(submitTeacherObject)
-		}
-		else {
-			fetch('http://127.0.0.1:8000/teacher/', {
+			onSubmit(submitTeacherObject);
+		} else {
+			fetch(address + '/teacher/', {
 				method: 'post',
 				body: JSON.stringify(submitTeacherObject),
 				headers: {
@@ -77,7 +88,9 @@ export default function TeacherForm({ name, className, category, timeTable, onSu
 	}
 	return (
 		<div className='create-teacher'>
-			<h1>{name ? `Update Teacher : ` : 'Add Teacher'} {name ? <span style={{opacity:'.5', textTransform:'capitalize'}}>{name}</span>:''}</h1>
+			<h1>
+				{name ? `Update Teacher : ` : 'Add Teacher'} {name ? <span style={{ opacity: '.5', textTransform: 'capitalize' }}>{name}</span> : ''}
+			</h1>
 			<form onSubmit={submitForm} spellCheck='false'>
 				{/* name input */}
 				<span>
@@ -100,7 +113,9 @@ export default function TeacherForm({ name, className, category, timeTable, onSu
 						<option value='free' style={{ textTransform: 'uppercase' }}>
 							None
 						</option>
-						<option value='busy' style={{textTransform:'uppercase'}}>Busy</option>
+						<option value='busy' style={{ textTransform: 'uppercase' }}>
+							Busy
+						</option>
 						{allClasses.map(classN => {
 							return (
 								<option key={classN} value={classN} style={{ textTransform: 'uppercase' }}>
