@@ -40,7 +40,8 @@ function TimetableRowEntry({ row, day, setTimetable }: { row: string[]; day: str
 			{row.map((item, index) => {
 				return (
 						<td key={`${day}-${index}`}>
-							<ClassSelector value={item}  day={day} setTimetable={setTimetable} period={index} />
+							{/* the mode is selected from localstorage, means user has to manually set the localstorage to use text input */}
+							<ClassSelector value={item}  day={day} setTimetable={setTimetable} period={index} mode={localStorage.getItem('mode') === 'text' ? 'text' : 'select'} />
 						</td>
 				);
 			})}
@@ -49,7 +50,7 @@ function TimetableRowEntry({ row, day, setTimetable }: { row: string[]; day: str
 }
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-export function ClassSelector({value, setTimetable, day, period }: {value:string, setTimetable: any; day: string; period: number }) {
+export function ClassSelector({ value, setTimetable, day, period, mode = 'select' }: { value: string, setTimetable: any; day: string; period: number; mode?: 'select' | 'text' }) {
 	// creating all classes combination
 	const allClasses: string[] = [];
 	for (const classN of [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]) {
@@ -58,12 +59,12 @@ export function ClassSelector({value, setTimetable, day, period }: {value:string
 		}
 	}
 
-	function updateTimetable(event:object) {
+	function updateTimetable(event:object, value?:string) {
 		// eslint-disable-next-line @typescript-eslint/no-explicit-any
 		setTimetable((timetable:any) => {
 			const e = Object(event)
 			const todayTimetable = [...timetable[day]]
-			todayTimetable[period] = e.target.value
+			todayTimetable[period] = value ||  e.target.value
 			const toRet = {...timetable}
 			toRet[day] = todayTimetable
 			return toRet
@@ -71,7 +72,8 @@ export function ClassSelector({value, setTimetable, day, period }: {value:string
 	}
 	const color = value === 'free'? 'rgba(124, 124, 124, 0.6)' : value ==='busy'? 'rgba(255, 125, 125, 0.5)' : 'var(--color-accent)'
 	const styles = {color:color, borderColor:color}
-	return (
+	// if input mode is of type select
+	if (mode === 'select') return (
 		<select name='class' value={value} onChange={updateTimetable} style={{ ...styles, textTransform:'uppercase', textAlign:'center'}}>
 			<option value="free">Free</option>
 			<option value="busy">Busy</option>
@@ -84,4 +86,33 @@ export function ClassSelector({value, setTimetable, day, period }: {value:string
 			})}
 		</select>
 	);
+
+	
+	// utility function for text input mode
+	// parses values like 12-a, 5-c to 12a, 5c
+	function parseValue(value:string) {
+		if(value === 'free') return ''
+		else if (value === 'busy') return 'busy'
+		else {
+			return (value.replace('-',''))
+		}
+	}
+
+	// encodes values like 5a to 5-a and '' to 'free'
+	function encodeValue(value: string) {
+		function split(str:string, index:number) {
+			const result = [str.slice(0, index), str.slice(index)].join('-')
+
+			return result;
+		}
+
+		if (value === 'busy' || value === 'free') return value
+		return split(value, value.length-1)
+	}
+
+	// return values for if mode is text
+	// which is made for faster entry
+	return (
+		<input type="text" value={parseValue(value)} style={{width: '5ch'}} onChange={e => updateTimetable(e, encodeValue(e.target.value))} />
+	)
 }
