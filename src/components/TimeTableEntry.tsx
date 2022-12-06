@@ -107,6 +107,7 @@ export function ClassSelector({ value, setTimetable, day, period, mode = 'select
 		}
 
 		if (value === 'busy' || value === 'free') return value
+		if (value.replaceAll(' ', '') === '') return 'free'
 		return split(value, value.length-1)
 	}
 
