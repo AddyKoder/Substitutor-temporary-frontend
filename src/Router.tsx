@@ -9,6 +9,8 @@ import UpdateTeacher from './pages/UpdateTeacher'
 import Reschedules from './pages/Reschedules';
 import TakeAttendence from './pages/TakeAttendence';
 import Teacher from './pages/Teacher';
+// Importing the settings page
+import Settings from './pages/Settings';
 
 export default function Router() {
 	return (
@@ -18,6 +20,7 @@ export default function Router() {
 				<Route path='/' element={<Navbar />}>
 					{/* defaults to the reschedules page */}
 					<Route index element={<Reschedules />} />
+					<Route path='/settings' element={<Settings/>} />
 					{/* routes for teachers db */}
 					<Route path='/teachers'>
 						<Route index element={<AllTeachers />} />
