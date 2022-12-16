@@ -76,7 +76,8 @@ export function ClassSelector({ value, setTimetable, day, period, mode = 'select
 	if (mode === 'select') return (
 		<select name='class' value={value} onChange={updateTimetable} style={{ ...styles, textTransform:'uppercase', textAlign:'center'}}>
 			<option value="free">Free</option>
-			<option value="busy">Busy</option>
+			{/* removing the busy option to prevent misuse */}
+			{/* <option value="busy">Busy</option> */}
 			{allClasses.map(classN => {
 				return (
 					<option key={classN} value={ classN } style={{textTransform:'uppercase'}}>

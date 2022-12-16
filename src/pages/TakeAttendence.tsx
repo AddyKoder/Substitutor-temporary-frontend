@@ -60,7 +60,7 @@ export default function TakeAttendence() {
 				.then(r => {
 					if (r.status === 200) {
 						setTimeout(() => {
-							navigate('/');
+							navigate('/attendence');
 						}, 100);
 					}
 				})

@@ -113,9 +113,10 @@ export default function TeacherForm({
 						<option value='free' style={{ textTransform: 'uppercase' }}>
 							None
 						</option>
-						<option value='busy' style={{ textTransform: 'uppercase' }}>
+						{/* removing the busy option to avoid misuse */}
+						{/* <option value='busy' style={{ textTransform: 'uppercase' }}>
 							Busy
-						</option>
+						</option> */}
 						{allClasses.map(classN => {
 							return (
 								<option key={classN} value={classN} style={{ textTransform: 'uppercase' }}>
