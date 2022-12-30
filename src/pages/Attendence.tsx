@@ -70,7 +70,7 @@ function AbsentTeachers({ teachersIds }: { teachersIds: number[] }) {
 				return fetchTeacher(e);
 			})
 		).then((r: number[]) => setTeachers(r));
-	});
+	}, []);
 
 	// eslint-disable-next-line @typescript-eslint/no-explicit-any
 	return (
