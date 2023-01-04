@@ -4,6 +4,7 @@ import { typeTeacher } from '../utils/types';
 import Spinner from '../components/Spinner';
 import Notification from '../components/Notification';
 import { useNavigate } from 'react-router-dom';
+import address from '../serverAddress';
 
 interface fullTypeTeacher extends typeTeacher {
 	timeTable: object;
@@ -17,14 +18,14 @@ export default function Teacher() {
 
 	function delTeacher() {
 		if (!confirm(`Are you sure you want to delete Teacher`)) return;
-		fetch(`http://127.0.0.1:8000/teacher/${id}`, { method: 'delete' });
+		fetch(`${address}/teacher/${id}`, { method: 'delete' });
 		setTimeout(() => {
 			navigate('/teachers');
 		}, 100);
 	}
 	// fetching Teacher's data
 	useEffect(() => {
-		fetch(`http://127.0.0.1:8000/teacher/${id}`)
+		fetch(`${address}/teacher/${id}`)
 			// fetching successfully
 			.then(r => {
 				if (r.status === 200) {
@@ -33,7 +34,9 @@ export default function Teacher() {
 				throw new Error('invalid status code');
 			})
 			.then(r => {
-				setTeacher(r);
+				if (r.status === 'ok') {
+					setTeacher(r.payload.teacher);
+				} else setTeacher('failed')
 			})
 			// if some error occured
 			.catch(() => {

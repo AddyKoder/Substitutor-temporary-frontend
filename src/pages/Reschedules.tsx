@@ -14,8 +14,8 @@ export default function Reschedules() {
 				throw new Error('cannot fetch reschedules');
 			})
 			.then(r => {
-				if (r instanceof Array) {
-					setReschedules(r);
+				if (r.status === 'ok' && r.payload.reschedules instanceof Array ) {
+					setReschedules(r.payload.reschedules);
 				} else {
 					setReschedules('null');
 				}

@@ -15,7 +15,9 @@ export default function RescheduleList({ reschedules }: { reschedules: object[] 
 				throw new Error('invalid status code');
 			})
 			.then(r => {
-				setTeachers(r);
+				if (r.status === 'ok') {
+					setTeachers(r.payload.teachers);
+				} else setTeachers('failed')
 				
 			})
 			// if some error occured

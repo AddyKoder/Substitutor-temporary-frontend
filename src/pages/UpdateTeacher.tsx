@@ -5,6 +5,7 @@ import { typeTeacher } from '../utils/types';
 import Spinner from '../components/Spinner';
 import Notification from '../components/Notification';
 import { useNavigate } from 'react-router-dom';
+import address from '../serverAddress';
 
 interface fullTypeTeacher extends typeTeacher {
 	timeTable: object;
@@ -17,7 +18,7 @@ export default function UpdateTeacher() {
 
 	// fetching Teacher's data
 	useEffect(() => {
-		fetch(`http://127.0.0.1:8000/teacher/${id}`)
+		fetch(`${address}/teacher/${id}`)
 			// fetching successfully
 			.then(r => {
 				if (r.status === 200) {
@@ -26,7 +27,9 @@ export default function UpdateTeacher() {
 				throw new Error('invalid status code');
 			})
 			.then(r => {
-				setTeacher(r);
+				if (r.status === 'ok') {
+					setTeacher(r.payload.teacher);
+				} else setTeacher('failed')
 			})
 			// if some error occured
 			.catch(() => {
@@ -50,7 +53,7 @@ export default function UpdateTeacher() {
 				// by failing the data verifier
 				if (! confirm('Please recheck the modifications for any errors. Do you want to continue modifying?')) return 
 				delete Object(teacherData).timeTable._id
-				fetch(`http://127.0.0.1:8000/teacher/${id}`, {
+				fetch(`${address}/teacher/${id}`, {
 					method: 'post',
 					body: JSON.stringify({...teacherData }),
 					headers: {

@@ -18,7 +18,11 @@ export default function Attendence() {
 				throw new Error('some error occured');
 			})
 			.then(r => {
-				setAttendence(r);
+				
+				if (r.status === 'ok') {
+					setAttendence(r.payload.attendance);
+				} else setAttendence('error')
+				
 			})
 			.catch(() => {
 				setAttendence('error');
@@ -58,8 +62,8 @@ export default function Attendence() {
 function AbsentTeachers({ teachersIds }: { teachersIds: number[] }) {
 	const navigate = useNavigate();
 	async function fetchTeacher(id: number) {
-		const res = await fetch(`http://127.0.0.1:8000/teacher/${id}`);
-		const teacher = await res.json();
+		const res = await fetch(`${address}/teacher/${id}`);
+		const teacher = (await res.json()).payload.teacher;
 		return teacher;
 	}
 	const [teachers, setTeachers] = useState<string | number[]>('pending');
