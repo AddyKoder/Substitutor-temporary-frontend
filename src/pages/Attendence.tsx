@@ -20,7 +20,8 @@ export default function Attendence() {
 			.then(r => {
 				
 				if (r.status === 'ok') {
-					setAttendence(r.payload.attendance);
+					if (r.payload.attendance === null) setAttendence(null)
+					else setAttendence(r.payload.attendance.map((r:{id:number})=> r.id))
 				} else setAttendence('error')
 				
 			})
