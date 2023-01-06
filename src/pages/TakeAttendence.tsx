@@ -54,7 +54,7 @@ export default function TakeAttendence() {
 		if (confirm('Are you sure to submit attendance?')) {
 			fetch(address + '/attendence', {
 				method: 'post',
-				body: JSON.stringify({ attendance: selected.map(n => { return { id: n, absentPeriods: [] } }) }),
+				body: JSON.stringify({ attendance: selected.map(n => { return { id: n, presentPeriods: [] } }) }),
 				headers: {
 					'Content-type': 'application/json; charset=UTF-8',
 				},
