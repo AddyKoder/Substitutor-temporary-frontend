@@ -29,15 +29,6 @@ export default function Reschedules() {
 				<h1 style={{ padding: '0 .8em', margin: '.8em 0' }}>
 					Reschedules : <span style={{ opacity: '0.5', fontWeight: '200' }}>{new Date().toISOString().slice(0, 10)}</span>
 				</h1>
-				<button
-					onClick={() => {
-						fetch(address + '/reschedule/upload').then(() => {
-							alert('Uploading Reschedules');
-						});
-					}}
-				>
-					Upload
-				</button>
 			</header>
 			{reschedules === 'pending' ? (
 				<Spinner />
