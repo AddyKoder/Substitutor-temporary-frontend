@@ -62,7 +62,7 @@ export default function UpdateTeacher() {
 				}).then(r => {
 					if (r.status === 200) navigate('/teachers');
 					else {
-						return r.text()
+						return r.json()
 					}
 				}).then(r => console.log(r))
 			}}
